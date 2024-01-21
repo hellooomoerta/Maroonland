@@ -1,12 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+internal enum MovementState
+{
+    Idle,
+    Right,
+    Left,
+}
 
 public class PlayerAnimationScript : MonoBehaviour
 {
     public Animator animator;
-    public Transform transform;
-    public Vector2 moveDirection;
+    private MovementState _movementState;
 
     void Start()
     {
@@ -16,21 +20,35 @@ public class PlayerAnimationScript : MonoBehaviour
 
     void Update()
     {
-        if (moveDirection.x < 0)
+        switch (_movementState)
         {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            case MovementState.Idle:
+                animator.SetBool("isMoving", false);
+            break;
+            case MovementState.Left:
+                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                animator.SetBool("isMoving", true);
+                break;
+            default:
+                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                animator.SetBool("isMoving", true);
+            break;
         }
     }
 
     public void UpdateMovement(Vector2 movement)
     {
-        animator.SetFloat("x", movement.x);
-        animator.SetFloat("y", movement.y);
-
-        moveDirection = movement;
+        if (movement.x == 0 && movement.y == 0)
+        {
+            _movementState = MovementState.Idle;
+        }
+        else if (movement.x < 0)
+        {
+            _movementState = MovementState.Left;
+        }
+        else
+        {
+            _movementState = MovementState.Right;
+        }
     }
 }
