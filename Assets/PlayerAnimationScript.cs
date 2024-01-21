@@ -12,13 +12,7 @@ public class PlayerAnimationScript : MonoBehaviour
     public Animator animator;
     private MovementState _movementState;
 
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
+    private void Update()
     {
         switch (_movementState)
         {

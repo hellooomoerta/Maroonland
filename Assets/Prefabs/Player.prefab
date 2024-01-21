@@ -175,12 +175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  bulletSpeed: 10
-  bulletSpawnOffset: 0.6
   rb: {fileID: 8765232145847677884}
+  bulletSpawnPoint: {fileID: 0}
   crosshair: {fileID: 0}
   animation: {fileID: 2342597085096980937}
-  bulletPrefab: {fileID: 5863534262972741115, guid: 84b2952b9a51d4c00aaa59850cb13d58, type: 3}
 --- !u!114 &9042586840799906054
 MonoBehaviour:
   m_ObjectHideFlags: 0

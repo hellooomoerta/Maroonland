@@ -4,8 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float bulletSpeed = 10f;
-    public float bulletSpawnOffset = 0.6f;
     public Rigidbody2D rb;
+    public BulletSpawnPoint bulletSpawnPoint;
     public Crosshair crosshair;
     public PlayerAnimationScript animation;
     public GameObject bulletPrefab;
@@ -31,8 +31,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        UpdateBulletSpawnPoint();
         Move();
         Shoot();
+    }
+
+    private void UpdateBulletSpawnPoint()
+    {
+        bulletSpawnPoint.UpdatePositions(transform.position, crosshair.transform.position);
     }
 
     private void Move()
@@ -44,17 +50,13 @@ public class PlayerController : MonoBehaviour
     
     private void Shoot()
     {
-        if (!_playerInput.Player.Fire.triggered)
+        if (_playerInput.Player.Fire.triggered)
         {
-            return;
+            var spawnPoint = bulletSpawnPoint.transform.position;
+            var direction = crosshair.transform.position - spawnPoint;
+            var bullet = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity);
+            var rigidbody2d = bullet.GetComponent<Rigidbody2D>();
+            rigidbody2d.velocity = direction.normalized * bulletSpeed;
         }
-
-        var playerPosition = transform.position;
-        var direction = (playerPosition - crosshair.transform.position).normalized;
-        var spawnPoint = playerPosition + direction * bulletSpawnOffset;
-        var offset = playerPosition - spawnPoint;
-        var bullet = Instantiate(bulletPrefab, spawnPoint + offset.normalized, Quaternion.identity);
-        var rigidbody2d = bullet.GetComponent<Rigidbody2D>();
-        rigidbody2d.velocity = offset.normalized * bulletSpeed;
     }
 }
