@@ -9,6 +9,7 @@
 [Tt]emp/
 [Uu]nityGenerated/
 Logs/*
+UserSettings/*
 .vscode/*
 # file on crash reports
 sysinfo.txt
