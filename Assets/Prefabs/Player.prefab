@@ -176,7 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rb: {fileID: 8765232145847677884}
-  camera: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  crosshair: {fileID: 0}
   animation: {fileID: 2342597085096980937}
 --- !u!114 &9042586840799906054
 MonoBehaviour:
