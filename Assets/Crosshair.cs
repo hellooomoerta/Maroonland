@@ -3,26 +3,15 @@ using UnityEngine.InputSystem;
 
 public class Crosshair : MonoBehaviour
 {
-    private PlayerInput _playerInput;
+    private Vector2 _mousePosition;
     
-    private void Awake()
-    {
-        _playerInput = new PlayerInput();
-    }
-
-    private void OnEnable()
-    {
-        _playerInput.Player.Look.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _playerInput.Player.Look.Disable();
-    }
-
     private void Update()
     {
-        var position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        transform.position = new Vector3(position.x, position.y, -1);
+        _mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    }
+
+    private void FixedUpdate()
+    {
+        transform.position = new Vector3(_mousePosition.x, _mousePosition.y, -1);
     }
 }

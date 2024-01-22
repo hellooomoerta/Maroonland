@@ -30,7 +30,7 @@ public class PlayerAnimationScript : MonoBehaviour
         }
     }
 
-    public void UpdateMovement(Vector2 movement)
+    public void SetMovement(Vector2 movement)
     {
         if (movement.x == 0 && movement.y == 0)
         {

@@ -1,62 +1,39 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float bulletSpeed = 10f;
     public Rigidbody2D rb;
-    public BulletSpawnPoint bulletSpawnPoint;
+    public PlayerAnimationScript playerAnimation;
+    public InputActionReference move;
+    public InputActionReference look;
+    public InputActionReference fire;
+    public WeaponScript weapon;
     public Crosshair crosshair;
-    public PlayerAnimationScript animation;
-    public GameObject bulletPrefab;
-    private PlayerInput _playerInput;
-    
-    private void Awake()
-    {
-        _playerInput = new PlayerInput();
-    }
+    private Vector2 _moveInput;
 
     private void OnEnable()
     {
-        _playerInput.Player.Move.Enable();
-        _playerInput.Player.Fire.Enable();
-
-    }
-
-    private void OnDisable()
-    {
-        _playerInput.Player.Move.Disable();
-        _playerInput.Player.Fire.Disable();
+        fire.action.started += _ => weapon.FireStarted();
+        fire.action.canceled += _ => weapon.FireCancelled();
+        look.action.started += _ => weapon.SetCrosshairPosition(crosshair.transform.position);
     }
 
     private void Update()
     {
-        UpdateBulletSpawnPoint();
-        Move();
-        Shoot();
+        _moveInput = move.action.ReadValue<Vector2>();
     }
 
-    private void UpdateBulletSpawnPoint()
+    private void FixedUpdate()
     {
-        bulletSpawnPoint.UpdatePositions(transform.position, crosshair.transform.position);
+        Move();
     }
 
     private void Move()
     {
-        var movement = _playerInput.Player.Move.ReadValue<Vector2>();
-        rb.velocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
-        animation.UpdateMovement(movement);
-    }
-    
-    private void Shoot()
-    {
-        if (_playerInput.Player.Fire.triggered)
-        {
-            var spawnPoint = bulletSpawnPoint.transform.position;
-            var direction = crosshair.transform.position - spawnPoint;
-            var bullet = Instantiate(bulletPrefab, spawnPoint, Quaternion.identity);
-            var rigidbody2d = bullet.GetComponent<Rigidbody2D>();
-            rigidbody2d.velocity = direction.normalized * bulletSpeed;
-        }
+        rb.velocity = new Vector2(_moveInput.x * moveSpeed, _moveInput.y * moveSpeed);
+        playerAnimation.SetMovement(_moveInput);
+        weapon.SetPlayerPosition(transform.position);
     }
 }
