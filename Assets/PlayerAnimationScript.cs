@@ -16,10 +16,20 @@ internal enum MovementState
 public class PlayerAnimationScript : MonoBehaviour
 {
     public Animator animator;
+    public PlayerController playerController;
     private MovementState _movementState;
 
     private void Update()
     {
+        if (playerController.rb.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else if (playerController.rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+
         switch (_movementState)
         {
             case MovementState.Idle:
@@ -27,49 +37,49 @@ public class PlayerAnimationScript : MonoBehaviour
             break;
             case MovementState.Right:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", 1);
                 animator.SetFloat("moveY", 0);
                 break;
             case MovementState.DownRight:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", 0.71f);
                 animator.SetFloat("moveY", -0.71f);
                 break;
             case MovementState.Down:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", 0);
                 animator.SetFloat("moveY", -1);
                 break;
             case MovementState.DownLeft:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", -0.71f);
                 animator.SetFloat("moveY", -0.71f);
                 break;
             case MovementState.Left:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", -1);
                 animator.SetFloat("moveY", 0);
                 break;
             case MovementState.UpLeft:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", -0.71f);
                 animator.SetFloat("moveY", 0.71f);
                 break;
             case MovementState.Up:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", 0);
                 animator.SetFloat("moveY", 1);
                 break;
             case MovementState.UpRight:
                 animator.SetBool("isMoving", true);
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 animator.SetFloat("moveX", 0.71f);
                 animator.SetFloat("moveY", 0.71f);
                 break;
@@ -78,7 +88,39 @@ public class PlayerAnimationScript : MonoBehaviour
 
     public void SetMovement(Vector2 movement)
     {
-        if (movement.x == 0 && movement.y == 0)
+        if (movement.y > 0) //Up
+        {
+            if (Mathf.Abs(movement.x) > 0) //Diagonal Right or Diagonal Left
+            {
+
+            }
+            else
+            {
+                //Neutral x
+            }
+        }
+        else if (movement.y < 0) //Down
+        {
+            if (Mathf.Abs(movement.x) > 0) //Diagonal Right or Diagonal Left
+            {
+
+            }
+            else
+            {
+                //Neutral x
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(movement.x) > 0)
+            {
+                //Right or Left
+            }
+        }
+
+
+
+        if (playerController.rb.velocity.x == 0 && movement.y == 0)
         {
             _movementState = MovementState.Idle;
         }
