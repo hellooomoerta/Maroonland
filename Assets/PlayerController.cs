@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _moveInput = move.action.ReadValue<Vector2>();
+        Debug.Log(_moveInput); //DEEBBBBUUUUUUUUUUUUUUUUUGGGGGG!!!
     }
 
     private void FixedUpdate()
