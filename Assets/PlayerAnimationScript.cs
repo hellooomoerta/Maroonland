@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 internal enum MovementState
 {
@@ -74,38 +73,14 @@ public class PlayerAnimationScript : MonoBehaviour
 
     public void SetMovement(Vector2 movement)
     {
-        if (movement.y > 0) //Up
+        _movementState = (movement.x, movement.y) switch
         {
-            if (Mathf.Abs(movement.x) > 0) //Diagonal Up Right or Diagonal Up Left
-            {
-                _movementState = MovementState.DiagonalUp;
-            }
-            else
-            {
-                _movementState = MovementState.Up; //Neutral x
-            }
-        }
-        else if (movement.y < 0) //Down
-        {
-            if (Mathf.Abs(movement.x) > 0) //Diagonal Down Right or Diagonal Down Left
-            {
-                _movementState = MovementState.DiagonalDown;
-            }
-            else
-            {
-                _movementState = MovementState.Down; //Neutral x
-            }
-        }
-        else if (movement.y == 0)
-        {
-            if (Mathf.Abs(movement.x) > 0)
-            {
-                _movementState = MovementState.Horizontal; //Right or Left
-            }
-            else
-            {
-                _movementState = MovementState.Idle;
-            }
-        }
+            (x: 0, y: > 0) => MovementState.Up,
+            (x: 0, y: < 0) => MovementState.Down,
+            (x: not 0, y: 0) => MovementState.Horizontal,
+            (x: not 0, y: > 0) => MovementState.DiagonalUp,
+            (x: not 0, y: < 0) => MovementState.DiagonalDown,
+            _ => MovementState.Idle
+        };
     }
 }
