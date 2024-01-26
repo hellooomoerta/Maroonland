@@ -17,13 +17,12 @@ public class PlayerController : MonoBehaviour
     {
         fire.action.started += _ => weapon.FireStarted();
         fire.action.canceled += _ => weapon.FireCancelled();
-        look.action.started += _ => weapon.SetCrosshairPosition(crosshair.transform.position);
+        look.action.started += x => weapon.UpdateAim(x.ReadValue<Vector2>());
     }
 
     private void Update()
     {
         _moveInput = move.action.ReadValue<Vector2>();
-        Debug.Log(_moveInput); //DEEBBBBUUUUUUUUUUUUUUUUUGGGGGG!!!
     }
 
     private void FixedUpdate()
@@ -35,6 +34,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(_moveInput.x * moveSpeed, _moveInput.y * moveSpeed);
         playerAnimation.SetMovement(_moveInput);
-        weapon.SetPlayerPosition(transform.position);
+        weapon.UpdatePosition(transform.position);
     }
 }

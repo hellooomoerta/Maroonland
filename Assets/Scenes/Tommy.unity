@@ -241,10 +241,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8780729559616581527, guid: 2ed5de6fe8f7ddd4381be9b3db49c2d4, type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 1739317827}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -334,17 +330,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1739317827 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7117010639117800857, guid: 2ed5de6fe8f7ddd4381be9b3db49c2d4, type: 3}
-  m_PrefabInstance: {fileID: 638555758}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c25beefc38544e81bf0332da1e05a63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
