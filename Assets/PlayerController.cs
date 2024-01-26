@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public PlayerAnimationScript playerAnimation;
     public InputActionReference move;
-    public InputActionReference look;
+    public InputActionReference lookMouse;
+    public InputActionReference lookGamepad;
     public InputActionReference fire;
     public WeaponScript weapon;
     public Crosshair crosshair;
@@ -17,7 +18,8 @@ public class PlayerController : MonoBehaviour
     {
         fire.action.started += _ => weapon.FireStarted();
         fire.action.canceled += _ => weapon.FireCancelled();
-        look.action.started += x => weapon.UpdateAim(x.ReadValue<Vector2>());
+        lookMouse.action.performed += _ => weapon.OnMouseMove();
+        lookGamepad.action.performed += x => weapon.OnGamepadMove(x.ReadValue<Vector2>());
     }
 
     private void Update()

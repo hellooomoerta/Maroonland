@@ -14,15 +14,22 @@ public class WeaponScript : MonoBehaviour
 
     public void UpdatePosition(Vector3 position) => transform.position = position;
 
-    public void UpdateAim(Vector2 position)
+    public void OnMouseMove()
     {
-        if (position.magnitude > 0.1f)
-        {
-            var mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            var direction = mousePosition - transform.position;
-            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
+        var mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Aim(mousePosition - transform.position);
+    }
+    
+    public void OnGamepadMove(Vector2 direction)
+    {
+        if (direction.sqrMagnitude is 0) return;
+        Aim(direction);
+    }
+
+    private void Aim(Vector3 direction)
+    {
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void Shoot()
