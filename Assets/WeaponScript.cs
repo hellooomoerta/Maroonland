@@ -6,11 +6,32 @@ public class WeaponScript : MonoBehaviour
     public float playerOffset = 0.6f;   
     public float bulletSpeed = 800f;
     public float weaponSpeed = 0.2f;
+    public bool rapidFire = false;
     public GameObject bulletPrefab;
 
-    public void FireStarted() => InvokeRepeating("Shoot", 0f, weaponSpeed);
-    
-    public void FireCancelled() => CancelInvoke("Shoot");
+    public void Fire()
+    {
+        if (!rapidFire)
+        {
+            Shoot();
+        }
+    }
+
+    public void RapidFireStarted()
+    {
+        if (rapidFire)
+        {
+            InvokeRepeating("Shoot", 0f, weaponSpeed);
+        }
+    }
+
+    public void RapidFireCancelled()
+    {
+        if (rapidFire)
+        {
+            CancelInvoke("Shoot");
+        }
+    }
 
     public void OnMouseMove()
     {

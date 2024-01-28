@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        fire.action.started += _ => weapon.FireStarted();
-        fire.action.canceled += _ => weapon.FireCancelled();
+        fire.action.performed += _ => weapon.Fire();
+        fire.action.started += _ => weapon.RapidFireStarted();
+        fire.action.canceled += _ => weapon.RapidFireCancelled();
         lookMouse.action.performed += _ => weapon.OnMouseMove();
         lookGamepad.action.performed += x => weapon.OnGamepadMove(x.ReadValue<Vector2>());
     }
