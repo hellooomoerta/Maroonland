@@ -3,29 +3,20 @@ using UnityEngine;
 internal enum MovementState
 {
     Idle,
-    //Right,
-    //DownRight,
     Down,
-    //DownLeft,
-    //Left,
-    //UpLeft,
     Up,
-    //UpRight
-    DiagonalUp,     //Testar grejer
-    DiagonalDown,   //Testar grejer
-    Horizontal      //Testar grejer
+    DiagonalUp,
+    DiagonalDown,
+    Horizontal 
 }
 
 public class PlayerAnimationScript : MonoBehaviour
 {
     public Animator animator;
-    public PlayerController playerController;
     private MovementState _movementState;
 
     private void Update()
     {
-        SetSpriteLocalScale();
-
         switch (_movementState)
         {
             case MovementState.Idle:
@@ -59,20 +50,9 @@ public class PlayerAnimationScript : MonoBehaviour
         }
     }
 
-    void SetSpriteLocalScale()
-    {
-        if (playerController.rb.velocity.x > 0)
-        {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-        }
-        else if (playerController.rb.velocity.x < 0)
-        {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-        }
-    }
-
     public void SetMovement(Vector2 movement)
     {
+        SetSpriteLocalScale(movement);
         _movementState = (movement.x, movement.y) switch
         {
             (x: 0, y: > 0) => MovementState.Up,
@@ -82,5 +62,17 @@ public class PlayerAnimationScript : MonoBehaviour
             (x: not 0, y: < 0) => MovementState.DiagonalDown,
             _ => MovementState.Idle
         };
+    }
+    
+    private void SetSpriteLocalScale(Vector2 movement)
+    {
+        if (movement.x > 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else if (movement.x < 0)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
     }
 }

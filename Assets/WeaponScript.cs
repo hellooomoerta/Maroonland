@@ -12,8 +12,6 @@ public class WeaponScript : MonoBehaviour
     
     public void FireCancelled() => CancelInvoke("Shoot");
 
-    public void UpdatePosition(Vector3 position) => transform.position = position;
-
     public void OnMouseMove()
     {
         var mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());

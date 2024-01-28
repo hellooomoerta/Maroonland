@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     public InputActionReference lookGamepad;
     public InputActionReference fire;
     public WeaponScript weapon;
-    public Crosshair crosshair;
     private Vector2 _moveInput;
 
     private void OnEnable()
@@ -36,6 +35,5 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(_moveInput.x * moveSpeed, _moveInput.y * moveSpeed);
         playerAnimation.SetMovement(_moveInput);
-        weapon.UpdatePosition(transform.position);
     }
 }
