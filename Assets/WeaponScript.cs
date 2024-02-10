@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class WeaponScript : MonoBehaviour
 {
-    public float playerOffset = 0.6f;   
+    public float playerOffset = 1f;   
     public float bulletSpeed = 800f;
     public float weaponSpeed = 0.2f;
-    public bool rapidFire = false;
+    public bool rapidFire;
     public GameObject bulletPrefab;
 
     public void Fire()
@@ -21,7 +21,7 @@ public class WeaponScript : MonoBehaviour
     {
         if (rapidFire)
         {
-            InvokeRepeating("Shoot", 0f, weaponSpeed);
+            InvokeRepeating(nameof(Shoot), 0f, weaponSpeed);
         }
     }
 
@@ -29,13 +29,13 @@ public class WeaponScript : MonoBehaviour
     {
         if (rapidFire)
         {
-            CancelInvoke("Shoot");
+            CancelInvoke(nameof(Shoot));
         }
     }
 
     public void OnMouseMove()
     {
-        var mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        var mousePosition = Camera.main!.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Aim(mousePosition - transform.position);
     }
     

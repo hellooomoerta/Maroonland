@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Crosshair
+  - Weapon
+  - Enemy
+  - PlayerBullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
