@@ -28,15 +28,11 @@ public class EnemyController : MonoBehaviour
             Shoot();
         }
     }
-    
-    void OnCollisionEnter2D(Collision2D collision) 
-    { 
-        if (collision.gameObject.CompareTag("Bullet"))
-        { 
-            Debug.Log("It's a hit!");
-            //collision.gameObject.SendMessage("ApplyDamage", 10); 
-        } 
-    } 
+
+    public void TakeDamage()
+    {
+        Debug.Log("Auch! Taking damage!");
+    }
     
     private void Move()
     {
@@ -47,8 +43,8 @@ public class EnemyController : MonoBehaviour
     private bool IsWithinRange()
     {
         var position = transform.position;
-        var hit = Physics2D.Raycast(position, (player.transform.position - position).normalized, range);
-
+        var hit = Physics2D.Raycast(position, _playerDirection, range);
+        
         return hit.collider is not null && hit.collider.CompareTag("Player");
     }
     
