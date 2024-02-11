@@ -1,5 +1,12 @@
+using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public enum Wielder
+{
+    Player,
+    Enemy
+}
 
 public class WeaponScript : MonoBehaviour
 {
@@ -8,7 +15,8 @@ public class WeaponScript : MonoBehaviour
     public float weaponSpeed = 0.2f;
     public bool rapidFire;
     public GameObject bulletPrefab;
-
+    public Wielder WeaponWielder;
+    
     public void Fire()
     {
         if (!rapidFire)
@@ -54,6 +62,9 @@ public class WeaponScript : MonoBehaviour
     private void Shoot()
     {
         var bullet = Instantiate(bulletPrefab, transform.position + transform.right * playerOffset, transform.rotation);
+        var script = bullet.GetComponent<BulletScript>();
+        script.WeaponWielder = WeaponWielder;
+        script.damage = 3;
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.right * bulletSpeed);
     }
 }

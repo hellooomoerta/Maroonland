@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public void TakeDamage()
+    public float hp;
+    
+    public void TakeDamage(float value)
     {
-        Debug.Log("Auch! Taking damage!");
+        hp -= value;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

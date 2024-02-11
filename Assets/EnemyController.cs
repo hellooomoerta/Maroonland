@@ -33,11 +33,6 @@ public class EnemyController : MonoBehaviour
             Shoot();
         }
     }
-
-    public void TakeDamage()
-    {
-        Debug.Log("Auch! Taking damage!");
-    }
     
     private void Move()
     {

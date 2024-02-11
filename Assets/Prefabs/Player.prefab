@@ -102,6 +102,7 @@ MonoBehaviour:
   weaponSpeed: 0.2
   rapidFire: 0
   bulletPrefab: {fileID: 5863534262972741115, guid: 84b2952b9a51d4c00aaa59850cb13d58, type: 3}
+  WeaponWielder: 0
 --- !u!1 &5164919460805777565
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,3 +431,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a566a0ffa50cf543a1a11a53451ceb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 18
