@@ -13,6 +13,11 @@ public class EnemyController : MonoBehaviour
     private Vector2 _playerDirection = Vector2.zero;
     private float _lastFiredTime;
 
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
     private void Update()
     {
         _playerDirection = (player.transform.position - transform.position).normalized;

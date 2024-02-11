@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66edf446e58a0432ebb0d5ac6371fd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOffset: 0.6
+  playerOffset: 2
   bulletSpeed: 800
   weaponSpeed: 0.2
   rapidFire: 0
@@ -111,10 +111,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 507158322905733785}
-  - component: {fileID: 8369103423835803383}
   - component: {fileID: 3689556158208905770}
   - component: {fileID: 4622182273490202124}
   - component: {fileID: 3399982416015732497}
+  - component: {fileID: 6622369016598911440}
   m_Layer: 2
   m_Name: Opponent
   m_TagString: Enemy
@@ -139,36 +139,6 @@ Transform:
   - {fileID: 1226380486071982593}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8369103423835803383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312184350850437450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 54de110f62f8840829f92f44ff18ef78, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!50 &3689556158208905770
 Rigidbody2D:
   serializedVersion: 4
@@ -247,7 +217,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06213379, y: -0.3106693}
+  m_Offset: {x: -0.056169868, y: -0.81301075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -258,8 +228,43 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.58200836, y: 1.1920497}
+  m_Size: {x: 0.5131948, y: 0.47715747}
   m_EdgeRadius: 0
+--- !u!70 &6622369016598911440
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7312184350850437450}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.056206226, y: -0.2925145}
+  m_Size: {x: 0.5156579, y: 1.5195056}
+  m_Direction: 0
 --- !u!1 &9087189085605889912
 GameObject:
   m_ObjectHideFlags: 0
