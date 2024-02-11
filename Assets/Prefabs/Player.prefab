@@ -101,7 +101,7 @@ MonoBehaviour:
   bulletSpeed: 800
   weaponSpeed: 0.2
   rapidFire: 0
-  bulletPrefab: {fileID: 5863534262972741115, guid: 9f166755a0892df4ca3d45e3b72edfcc, type: 3}
+  bulletPrefab: {fileID: 5863534262972741115, guid: 84b2952b9a51d4c00aaa59850cb13d58, type: 3}
 --- !u!1 &5164919460805777565
 GameObject:
   m_ObjectHideFlags: 0

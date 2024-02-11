@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4343105197293411972}
   - component: {fileID: -4073211201047079599}
   m_Layer: 6
-  m_Name: PlayerBullet
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f925edff34fc460b8d48f90f999ac3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplash: {fileID: 7322597129801318166, guid: ea5fa440162b0d74180ca1514c2581eb, type: 3}
 --- !u!61 &-4073211201047079599
 BoxCollider2D:
   m_ObjectHideFlags: 0
