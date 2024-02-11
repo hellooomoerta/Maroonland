@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
     private bool IsWithinRange()
     {
         var position = transform.position;
-        var hit = Physics2D.Raycast(position, _playerDirection, range);
+        var hit = Physics2D.Raycast(position, _playerDirection,Random.Range(range, range * 1.5f));
         
         return hit.collider is not null && hit.collider.CompareTag("Player");
     }
