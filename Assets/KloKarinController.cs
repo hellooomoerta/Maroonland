@@ -46,14 +46,11 @@ public class KloKarinController : MonoBehaviour
         switch (_kloKarinState)
         {
             case KloKarinState.Idling:
-                if (Vector2.Distance(transform.position, player.transform.position) <= aggroRange)
-                {
-                    _kloKarinState = KloKarinState.Running;
-                }
+                SwitchState();
                 break;
             case KloKarinState.Moving:
                 break;
-            case KloKarinState.Running:
+            case KloKarinState.Running: 
                 break;
             case KloKarinState.Attacking:
                 break;
@@ -75,5 +72,32 @@ public class KloKarinController : MonoBehaviour
     private void Move()
     {
         rb.velocity = _moveDirection * runSpeed;
+    }
+
+    private void SwitchState()
+    {
+        if (_kloKarinState == KloKarinState.Idling)
+        {
+            if (Vector2.Distance(transform.position, player.transform.position) <= aggroRange)
+            {
+                _kloKarinState = KloKarinState.Running;
+            }
+        }
+        if (_kloKarinState == KloKarinState.Moving)
+        {
+
+        }
+        if (_kloKarinState == KloKarinState.Running)
+        {
+
+        }
+        if (_kloKarinState == KloKarinState.Attacking)
+        {
+
+        }
+        if (_kloKarinState == KloKarinState.Dying)
+        {
+
+        }
     }
 }
