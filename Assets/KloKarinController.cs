@@ -8,7 +8,7 @@ public class KloKarinController : MonoBehaviour
     enum KloKarinState
     {
         Idling,
-        Moving, 
+        Patrolling, 
         Running,
         Attacking,
         Dying
@@ -20,6 +20,7 @@ public class KloKarinController : MonoBehaviour
     private bool _isPerformingAction = false;
     private Vector2 _moveDirection = Vector2.zero;
     private Vector2 _playerDirection = Vector2.zero;
+    private Vector3 spawnPoint;
     private KloKarinState _kloKarinState = KloKarinState.Idling;
 
     [SerializeField] private float aggroRange;
@@ -29,6 +30,7 @@ public class KloKarinController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        spawnPoint = transform.position;
     }
 
     private void Update()
@@ -48,11 +50,14 @@ public class KloKarinController : MonoBehaviour
             case KloKarinState.Idling:
                 SwitchState();
                 break;
-            case KloKarinState.Moving:
+            case KloKarinState.Patrolling:
+                SwitchState();
                 break;
-            case KloKarinState.Running: 
+            case KloKarinState.Running:
+                SwitchState();
                 break;
             case KloKarinState.Attacking:
+                SwitchState();
                 break;
             case KloKarinState.Dying:
                 break;
@@ -83,7 +88,7 @@ public class KloKarinController : MonoBehaviour
                 _kloKarinState = KloKarinState.Running;
             }
         }
-        if (_kloKarinState == KloKarinState.Moving)
+        if (_kloKarinState == KloKarinState.Patrolling)
         {
 
         }

@@ -117,7 +117,6 @@ GameObject:
   - component: {fileID: 3399982416015732497}
   - component: {fileID: 6622369016598911440}
   - component: {fileID: 7157359573550398490}
-  - component: {fileID: 5450566291228282980}
   m_Layer: 2
   m_Name: Bandido
   m_TagString: Enemy
@@ -187,9 +186,9 @@ MonoBehaviour:
   aimDuration: 0.05
   shootDuration: 0.2
   moveDuration: 0.3
-  rb: {fileID: 3689556158208905770}
   playerAnimation: {fileID: 1356998047181546238}
   weapon: {fileID: 2862141639312917196}
+  nextWaypointDistance: 3
 --- !u!61 &3399982416015732497
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -283,19 +282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 9
---- !u!114 &5450566291228282980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7312184350850437450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 067cf8973a839a145b985cb34ab7b002, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 326219847466734486}
 --- !u!1 &9087189085605889912
 GameObject:
   m_ObjectHideFlags: 0
